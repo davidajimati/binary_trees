@@ -8,22 +8,27 @@
  * Return: pointer to the new node or NULL if mem. allocation fails.
 */
 
-binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
 	binary_tree_t *new_node;
+	binary_tree_t *reset;
 
 	new_node = malloc(sizeof(binary_tree_t));
-	if (new_node == NULL || parent == NULL)
+	if (new_node == NULL)
 		return (NULL);
 
 	new_node->n = value;
 	new_node->parent = parent;
 	new_node->right = NULL;
-	new_node->left = parent->left;
-	parent->left = new_node;
 
-	if (new_node->left)
-		new_node->left->parent = new_node;
+	if (parent->left != NULL)
+	{
+		reset = parent->left;
+		parent->left = new_node;
+		new_node->left = reset;
+	}
+	else
+		new_node->left = NULL;
 
 	return (new_node);
 }

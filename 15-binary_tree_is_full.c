@@ -11,11 +11,10 @@ int binary_tree_is_full(const binary_tree_t *tree)
 {
 	int status;
 
-	status = (confirm(tree));
 	if (tree->parent && (!tree->left && !tree->right))
-		return (status);
+		return (1);
 
-
+	status = (confirm(tree));
 	if (status == 1 && tree)
 	{
 		status = binary_tree_is_full(tree->left);

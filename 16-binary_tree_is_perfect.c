@@ -1,5 +1,5 @@
 #include "binary_trees.h"
-int check_length(const binary_tree_t *node);
+int check_level(const binary_tree_t *node, int level, int *control);
 int is_full(const binary_tree_t *node);
 
 /**
@@ -13,14 +13,17 @@ int is_full(const binary_tree_t *node);
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int l, f;
+	int l, f, level = 0, *control = 0;
 
 	/* check if tree is NULL */
 	if (!tree)
 		return (0);
 
+	if (!tree->right && !tree->left)
+		return (1);
+
 	/* check if tree has equal length on all sides*/
-	l = check_length(tree);
+	l = check_level(tree, level, control);
 
 	/* check if tree ends with a leaf node (full?) */
 	f = is_full(tree);
@@ -39,17 +42,31 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 }
 
 /**
- * check_length - checks if the length of the tree is equal on all sides
+ * check_level - checks if the length of the tree is equal on all sides
  * @node: pointer to target tree
  * Return: 1 if length is same, 0 otherwise, 0 if node is NULL
  */
-int check_length(const binary_tree_t *node)
+int check_level(const binary_tree_t *node, int level, int *control)
 {
 	if (!node)
 		return (0);
 
-	return (((check_length(node->left) ==
-		(check_length(node->right))) ? 1 : 0));
+	if (!node->left && !node->right)
+	{
+		if (*control == 0)
+			*control = level;
+
+		else
+		{
+			if (*control != level)
+				return (0);
+			else
+				return (1);
+		}
+	}
+
+	return (((check_level(node->left, level + 1, control) &&
+		(check_level(node->right, level + 1, control)))));
 }
 
 /**

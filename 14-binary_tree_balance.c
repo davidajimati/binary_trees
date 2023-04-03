@@ -20,7 +20,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 /**
  * node_height - finds height of a node
- * @tree: pointer to root node
+ * @node: pointer to root node
  * Return: maximum depth(height) or 0 if node is NULL
  */
 

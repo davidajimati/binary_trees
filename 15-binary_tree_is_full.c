@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-int confirm(const binary_tree_t *node);
 
 /**
  * binary_tree_is_full - checks if a binary tree is full

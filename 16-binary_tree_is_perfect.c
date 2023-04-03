@@ -26,11 +26,8 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 	height = (int)binary_tree_height(tree) + 1;
-	printf("\n...Height is: %d\n", height);
 	size = (int)binary_tree_size(tree);
-	printf("...size is: %d\n", size);
 	calc_size = size_calculator(height);
-	printf("...calculated size is: %d\n", calc_size);
 
 	if (calc_size == size)
 		return (1);

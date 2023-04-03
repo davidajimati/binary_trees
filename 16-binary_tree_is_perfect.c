@@ -40,43 +40,32 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 /**
  * check_length - checks if the length of the tree is equal on all sides
- * @tree
+ * @node: pointer to target tree
+ * Return: 1 if length is same, 0 otherwise, 0 if node is NULL
  */
 int check_length(const binary_tree_t *node)
 {
-
-	int left, right;
-
 	if (!node)
 		return (0);
 
-	if (node)
-	{
-		left = 1 + check_length(node->left);
-		right = 1 + check_length(node->right);
-
-		if (left != right)
-			return (0);
-		return (1);
-	}
-	return (0);
+	return (((check_length(node->left) ==
+		(check_length(node->right))) ? 1 : 0));
 }
-
 
 /**
  * is_full - check if all nodes are full and ands with a leaf node
+ * @node: pointer to target tree
+ * Return: 1 if tree is full, 0 otherwise, 0 if node is NULL
  */
+
 int is_full(const binary_tree_t *node)
 {
-	/* if no node */
 	if (!node)
 		return (0);
 
-	/* If it's a leaf node */
 	if (!node->left && !node->right)
 		return (1);
 
-	/* if none of those conditions are met, then we recur */
 	if (node->right && node->left)
 	{
 		return ((is_full(node->left)) &&

@@ -6,9 +6,19 @@
  * Return: A pointer to the sibling node
  *			NULL if node or Parent is NULL
  *			NULL is node has no sibling
-*/
+ */
 
 binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
+	binary_tree_t *par, *sib;
+	par = node->parent;
 
+	if (!node || !par)
+		return (NULL);
+
+	if (par->left == node)
+		sib = par->right;
+	else
+		sib = par->left;
+	return (sib);
 }

@@ -17,7 +17,7 @@ size_t binary_tree_leaves(const binary_tree_t *tree)
 		return (0);
 
 	if (leaf_check(tree))
-			return (1);
+		return (1);
 
 	if (tree)
 	{

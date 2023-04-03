@@ -16,7 +16,7 @@ int binary_tree_is_full(const binary_tree_t *tree)
 		return (0);
 
 	/* If it's a leaf node */
-	if (((!tree->left) && (!tree->right)) && tree->parent)
+	if (!tree->left && !tree->right)
 		return (1);
 
 	/* if none of those conditions are met, then we recur */

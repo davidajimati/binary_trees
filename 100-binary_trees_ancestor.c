@@ -10,25 +10,27 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 									 const binary_tree_t *second)
 {
-	binary_tree_t *lca_f, *lca_s;
+	const binary_tree_t *lca_f, *lca_s, *lca;
 
 	if (!first || !second)
 		return (NULL);
 
 	if (first->parent == second)
-		return (second);
+		return (binary_tree_t *)second;
 	if (second->parent == first)
-		return (first);
+		return (binary_tree_t *)first;
 
 	while (first->parent)
 	{
-		lca_f = first->parent;
-
+		lca_f = first;
 		while (second->parent)
 		{
-			lca_s = second->parent;
+			lca_s = second;
 			if (lca_f == lca_s)
-				return (lca_s);
+			{
+				lca = lca_f;
+				return (binary_tree_t *)lca;
+			}
 			second = second->parent;
 		}
 		first = first->parent;
